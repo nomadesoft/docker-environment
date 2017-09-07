@@ -1,0 +1,12 @@
+version: '2.1'
+
+services:
+  api-designer:
+    build: image
+    image: nidarbox.com/api-designer:latest
+    ports:
+      - 3000
+    command:
+      - '/opt/api-designer/bin/api-designer.js'
+    environment:
+      - VIRTUAL_HOST=api-designer.local
