@@ -15,3 +15,5 @@ WORKDIR /opt/api-designer
 RUN npm install
 
 EXPOSE 3000
+
+ENTRYPOINT ["/opt/api-designer/bin/api-designer.js"]
