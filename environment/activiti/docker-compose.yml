@@ -1,0 +1,12 @@
+version: "2.1"
+
+services:
+  activiti:
+    build: image
+    image: jesusfar/activiti:latest
+    command:
+      - 'run'
+    ports:
+      - 28080:80
+    environment:
+      - VIRTUAL_HOST=activiti.local
