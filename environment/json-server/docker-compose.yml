@@ -1,0 +1,14 @@
+version: '2.3'
+
+services:
+  json-server:
+    build: image
+    image: nidarbox.com/json-server:latest
+    ports:
+      - 3000:3000
+    volumes:
+      - ./data:/data:rw
+    command: ["--middlewares", "security.js", "--routes", "routes.json", "-p", "3000", "-H", "0.0.0.0", "--watch"]
+    environment:
+      - VIRTUAL_HOST=${VIRTUAL_HOST}
+      - SECURITY_TOKEN=${SECURITY_TOKEN}
