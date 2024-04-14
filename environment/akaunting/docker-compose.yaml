@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  akaunting:
+    image: akaunting/akaunting
+    container_name: akaunting
+    ports:
+      - "8080:80"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=ak_db
+      - DB_USERNAME=root
+      - DB_PASSWORD=4k4unt1ng
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    restart: always
+    container_name: mysql_akaunting
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    environment:
+      - MYSQL_ROOT_PASSWORD=4k4unt1ng
+      - MYSQL_DATABASE=ak_db
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_ai_ci
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "1"
